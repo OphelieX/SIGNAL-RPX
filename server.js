@@ -11,7 +11,7 @@ const parser = new RSSParser({ timeout: 8000, headers: { "User-Agent": "Signal-P
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname));
 
 // -------------------------------------------------------
 // DONNEES : JOURNALISTES (editables via PUT /api/journalists)
@@ -301,7 +301,7 @@ app.get("/api/veille", async (req, res) => {
 
 // Fallback vers le frontend pour toutes les autres routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+ res.sendFile(path.join(__dirname, "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
